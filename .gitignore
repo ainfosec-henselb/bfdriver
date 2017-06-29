@@ -11,3 +11,4 @@ doxygen_warnings.txt
 *.ko
 *.o
 *.order
+*.so*

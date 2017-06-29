@@ -132,6 +132,16 @@ int64_t
 common_start_vmm(void);
 
 /**
+ * Start Core
+ *
+ * Same as Start VMM, but only starts on the current core.
+ *
+ * @return BF_SUCCESS on success, negative error code on failure
+ */
+int64_t
+common_start_core(uint64_t);
+
+/**
  * Stop VMM
  *
  * This function stops the vmm. Before a VMM can be stopped, it must first be
