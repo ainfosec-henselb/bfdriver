@@ -1,0 +1,64 @@
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = Hypervisor
+  MODULE_UNI_FILE                = Hypervisor.uni
+  FILE_GUID                      = 304C41BB-A302-4665-A189-3FCE2805F505
+  MODULE_TYPE                    = UEFI_APPLICATION
+  VERSION_STRING                 = 0.1
+  ENTRY_POINT                    = UefiMain
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64 IPF EBC
+#
+
+[Sources]
+  Driver.c
+  FileAccess.c
+  Platform.c
+  Util.c
+  PrepareProcessor.c
+  x86_64.nasm
+  vmcall.nasm
+  hypervisor/bfdriver/src/common.c
+  modules/libc++.so.1.c
+  modules/libc++abi.so.1.c
+  modules/libpthread.so.c
+  modules/libbfunwind.so.c
+  modules/libc.so.c
+  modules/libbfsyscall.so.c
+  modules/libbfvmm_vcpu_manager.so.c
+  modules/libbfvmm_serial.so.c
+  modules/libbfvmm_support.so.c
+  modules/libbfvmm_vcpu_factory.so.c
+  modules/libbfvmm_vcpu.so.c
+  modules/libbfvmm_debug_ring.so.c
+  modules/libbfvmm_exit_handler.so.c
+  modules/libbfvmm_vmcs.so.c
+  modules/libbfvmm_vmxon.so.c
+  modules/libbfvmm_memory_manager.so.c
+  modules/libbfvmm_intrinsics.so.c
+  modules/bfvmm.c
+
+[Packages]
+  StdLib/StdLib.dec
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  HypervisorPkg/HypervisorPkg.dec
+
+[LibraryClasses]
+  UefiApplicationEntryPoint
+  UefiBootServicesTableLib
+  UefiLib
+  LibC
+  LibStdio
+
+[Protocols]
+  gEfiLoadedImageProtocolGuid                        ## CONSUMES
+  gEfiDevicePathProtocolGuid                      ## CONSUMES
+  gEfiLoadedImageDevicePathProtocolGuid
+  gEfiDevicePathUtilitiesProtocolGuid
+  gEfiSimpleFileSystemProtocolGuid
+  gEfiMpServiceProtocolGuid
